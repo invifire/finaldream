@@ -1,0 +1,41 @@
+{% extends "nav.html" %}
+
+{% block nav %}
+  {% for item in nav %}
+    {% if item.current %}
+      <li class="page-link">
+        <a href="{{ item.url }}" class="selected">{{ item.title }}</a>
+      </li>
+    {% else %}
+    <li class="page-link">
+      <a href="{{ item.url }}" class="">{{ item.title }}</a>
+    </li>
+    {% endif %}
+  {% else %}
+  {% endfor %}
+  {% for item in primaryMenuPages %}
+    {% if item.current %}
+      <li class="page-link">
+        <a href="/page/{{item.id}}/{{item.slug}}" class="selected">{{ item.title.rendered }}</a>
+      </li>
+    {% else %}
+    <li class="page-link">
+      <a href="/page/{{item.id}}/{{item.slug}}" class="">{{ item.title.rendered }}</a>
+    </li>
+    {% endif %}
+  {% else %}
+  {% endfor %}
+{% endblock %}
+
+{% block headertext %}{{titlePost}}{% endblock %}
+
+{% block listposts %}
+{% endblock %}
+      
+{% block content %}
+<h2><a name="overview" class="anchor" href="#overview"><span class="header-link"></span></a>Welcome to finaldream.de</h2>
+{% endblock %}
+
+
+{% block next %}
+{% endblock %}

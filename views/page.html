@@ -1,0 +1,59 @@
+{% extends "nav.html" %}
+
+{% block nav %}
+  {% for item in primaryMenuDefault %}
+    {% if item.current %}
+      <li class="page-link">
+        <a href="{{ item.url }}" class="selected">{{ item.title }}</a>
+      </li>
+    {% else %}
+    <li class="page-link">
+      <a href="{{ item.url }}" class="">{{ item.title }}</a>
+    </li>
+    {% endif %}
+  {% endfor %}
+  {% for item in primaryMenuPages %}
+    {% if item.id == currentPage.id %}
+      <li class="page-link">
+        <a href="/page/{{ item.id }}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
+      </li>
+    {% else %}
+    <li class="page-link">
+      <a href="/page/{{ item.id }}/{{ item.slug }}" class="">{{ item.title.rendered }}</a>
+    </li>
+    {% endif %}
+  {% else %}
+  {% endfor %}
+{% endblock %}
+
+{% block headertext %}{{ currentPage.title.rendered }}{% endblock %}
+
+{% block listposts %}
+<div class="sidebar">
+    <ul class="sidebar-section">
+      <li class="sidebar-title"><a href="#">Pages</a></li>
+      <ul class="sidebar-items">
+      {% for item in primaryMenuPages %}
+        {% if item.id == currentPage.id %}
+          <li class="sidebar-item">
+            <a href="/page/{{ item.id }}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
+          </li>
+        {% else %}
+          <li class="sidebar-item">
+            <a href="/page/{{ item.id }}/{{ item.slug }}">{{ item.title.rendered }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </ul>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<h2><a name="overview" class="anchor" href="#overview"><span class="header-link"></span></a>{{currentPage.title.rendered}}</h2>
+{{currentPage.content.rendered | safe}}
+{% endblock %}
+
+{% block next %}
+{% endblock %}
