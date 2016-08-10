@@ -67,5 +67,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.set('port', 80);
+app.listen(app.get('port'));
 
 module.exports = app;
