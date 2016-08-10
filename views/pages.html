@@ -12,35 +12,35 @@
     </li>
     {% endif %}
   {% endfor %}
-  {% for item in primaryMenuPages %}
-    {% if item.id == currentPage.id %}
+  {% for item in data.pages %}
+    {% if item.id == data.currentPage.id %}
       <li class="page-link">
-        <a href="/page/{{ item.id }}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
+        <a href="/pages/{{ item.id }}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
       </li>
     {% else %}
     <li class="page-link">
-      <a href="/page/{{ item.id }}/{{ item.slug }}" class="">{{ item.title.rendered }}</a>
+      <a href="/pages/{{ item.id }}/{{ item.slug }}" class="">{{ item.title.rendered }}</a>
     </li>
     {% endif %}
   {% else %}
   {% endfor %}
 {% endblock %}
 
-{% block headertext %}{{ currentPage.title.rendered }}{% endblock %}
+{% block headertext %}{{ data.currentPage.title.rendered }}{% endblock %}
 
 {% block listposts %}
 <div class="sidebar">
     <ul class="sidebar-section">
       <li class="sidebar-title"><a href="#">Pages</a></li>
       <ul class="sidebar-items">
-      {% for item in primaryMenuPages %}
-        {% if item.id == currentPage.id %}
+      {% for item in data.pages %}
+        {% if item.id == data.currentPage.id %}
           <li class="sidebar-item">
-            <a href="/page/{{ item.id }}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
+            <a href="/pages/{{ item.id }}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
           </li>
         {% else %}
           <li class="sidebar-item">
-            <a href="/page/{{ item.id }}/{{ item.slug }}">{{ item.title.rendered }}</a>
+            <a href="/pages/{{ item.id }}/{{ item.slug }}">{{ item.title.rendered }}</a>
           </li>
         {% endif %}
       {% endfor %}
@@ -51,8 +51,8 @@
 
 
 {% block content %}
-<h2><a name="overview" class="anchor" href="#overview"><span class="header-link"></span></a>{{currentPage.title.rendered}}</h2>
-{{currentPage.content.rendered | safe}}
+<h2><a name="overview" class="anchor" href="#overview"><span class="header-link"></span></a>{{data.currentPage.title.rendered}}</h2>
+{{data.currentPage.content.rendered | safe}}
 {% endblock %}
 
 {% block next %}

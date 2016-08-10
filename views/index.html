@@ -16,11 +16,11 @@
   {% for item in primaryMenuPages %}
     {% if item.current %}
       <li class="page-link">
-        <a href="/page/{{item.id}}/{{item.slug}}" class="selected">{{ item.title.rendered }}</a>
+        <a href="/pages/{{item.id}}/{{item.slug}}" class="selected">{{ item.title.rendered }}</a>
       </li>
     {% else %}
     <li class="page-link">
-      <a href="/page/{{item.id}}/{{item.slug}}" class="">{{ item.title.rendered }}</a>
+      <a href="/pages/{{item.id}}/{{item.slug}}" class="">{{ item.title.rendered }}</a>
     </li>
     {% endif %}
   {% else %}

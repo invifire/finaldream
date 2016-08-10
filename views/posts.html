@@ -1,0 +1,67 @@
+{% extends "nav.html" %}
+
+{% block nav %}
+  {% for item in primaryMenuDefault %}
+    {% if item.current %}
+      <li class="page-link">
+        <a href="{{ item.url }}" class="selected">{{ item.title }}</a>
+      </li>
+    {% else %}
+    <li class="page-link">
+      <a href="{{ item.url }}" class="">{{ item.title }}</a>
+    </li>
+    {% endif %}
+  {% endfor %}
+  {% for item in data.pages %}
+    {% if item.id == currentId %}
+      <li class="page-link">
+        <a href="/pages/{{ item.id}}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
+      </li>
+    {% else %}
+    <li class="page-link">
+      <a href="/pages/{{ item.id}}/{{ item.slug }}" class="">{{ item.title.rendered }}</a>
+    </li>
+    {% endif %}
+  {% else %}
+  {% endfor %}
+{% endblock %}
+
+{% block headertext %}{{ data.currentPost.title.rendered }}{% endblock %}
+
+{% block listposts %}
+<div class="sidebar">
+    <ul class="sidebar-section">
+      <li class="sidebar-title"><a href="#">Posts</a></li>
+      <ul class="sidebar-items">
+      {% for item in data.posts %}
+        {% if item.id == data.currentPost.id  %}
+          <li class="sidebar-item">
+            <a href="/posts/{{ item.id }}/{{ item.slug }}" class="selected">{{ item.title.rendered }}</a>
+          </li>
+        {% else %}
+          <li class="sidebar-item">
+            <a href="/posts/{{item.id}}/{{item.slug}}">{{ item.title.rendered }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </ul>
+</div>
+{% endblock %}
+
+
+{% block content %}
+  {% if data.currentPost %}
+  <h2><a name="overview" class="anchor" href="#overview"><span class="header-link"></span></a>{{data.currentPost.title.rendered}}</h2>
+  {{data.currentPost.content.rendered | safe}}
+  {% else %}
+  
+  {% for item in data.posts %}
+    <h2><a name="overview" class="anchor" href="/posts/{{ item.id }}/{{ item.slug }}"><span class="header-link"></span></a>{{item.title.rendered}}</h2>
+    {{item.excerpt.rendered | safe}}
+  {% endfor %}
+  {% endif %}
+{% endblock %}
+
+{% block next %}
+{% endblock %}

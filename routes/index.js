@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   titlePost: 'home',
   nav: [
     {title: 'Home', url: '/', current: true},
-    {title: 'Posts', url: '/post/', current: false}
+    {title: 'Posts', url: '/posts/', current: false}
   ]
   };
   request.get('http://playground.finaldream.de/wp-json/wp/v2/pages', function(err, response, body) {

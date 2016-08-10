@@ -7,8 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var post = require('./routes/post');
-var page = require('./routes/page');
+var posts = require('./routes/posts');
+var pages = require('./routes/pages');
 
 var app = express();
 
@@ -33,8 +33,8 @@ nunjucks.setup({
 }, app);
 
 app.use('/', routes);
-app.use('/post/', post);
-app.use('/page/', page);
+app.use('/posts/', posts);
+app.use('/pages/', pages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
